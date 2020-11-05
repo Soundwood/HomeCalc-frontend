@@ -1,8 +1,8 @@
-export const scenariosReducer = (state = [], action) => {
+export const usersReducer = (state = [], action) => {
     switch(action.type){
-        case 'FETCH_SCENARIOS':
+        case 'FETCH_USERS':
             return action.payload
-        case 'ADD_SCENARIO':
+        case 'ADD_USER':
             return [...state, action.payload]
         default:
             return state

@@ -1,11 +1,13 @@
-import React, { Component } from 'react'
+import React from 'react'
+import ScenarioForm from './ScenarioForm'
 
-export default class App extends Component {
-    render() {
-        return (
-            <div>
-                Howdy World
-            </div>
-        )
-    }
+const App = () => {
+    return (
+        <div>
+            Howdy World
+            <ScenarioForm />
+        </div>
+    )
 }
+
+export default App
