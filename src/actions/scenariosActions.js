@@ -1,13 +1,13 @@
 export const fetchScenarios = () => {
     return (dispatch) => {
-        fetch('http://http://localhost:3000/scenarios')
+        fetch('http://localhost:3000/api/v1/scenarios')
         .then(resp => resp.json())
         .then(data => dispatch({ type: 'FETCH_SCENARIOS', payload: data}))
     }
 }
 export const addScenario = scenario => {
     return (dispatch) => {
-        fetch('http://http://localhost:3000/scenarios', {
+        fetch('http://localhost:3000/api/v1/scenarios', {
             method: 'POST',
             body: JSON.stringify(scenario),
             headers: { 'Content-Type': 'application/json' }
