@@ -1,5 +1,6 @@
 import { resetLoginForm } from './loginForm'
 import { resetSignupForm } from './signupForm'
+import { getMyScenarios, clearScenarios } from './scenarios'
 
 export const setCurrentUser = user => {
     return {
@@ -16,7 +17,7 @@ export const clearCurrentUser = () => {
 // sync above
 // async below
 
-export const login = credentials => {
+export const login = (credentials, history) => {
     return dispatch => {
         //  add loading current user message here?
         return fetch('http://localhost:3000/api/v1/login', {
@@ -30,9 +31,10 @@ export const login = credentials => {
             .then( r => r.json())
             .then(user => {
                 if (user.error) {
-                    alert(user.error)
+                    console.log(user.error)
                 } else {
                     dispatch(setCurrentUser(user))
+                    dispatch(getMyScenarios())
                     dispatch(resetLoginForm())
                 }
             })
@@ -56,7 +58,7 @@ export const signup = credentials => {
             .then( r => r.json())
             .then(user => {
                 if (user.error) {
-                    alert(user.error)
+                    console.log(user.error)
                 } else {
                     dispatch(setCurrentUser(user))
                     dispatch(resetSignupForm())
@@ -66,15 +68,18 @@ export const signup = credentials => {
     }
 }
 
-export const logout = credentials => {
+export const logout = (credentials, history) => {
     return dispatch => {
         dispatch(clearCurrentUser())
+        dispatch(clearScenarios())
         return fetch('http://localhost:3000/api/v1/logout', {
             credentials: "include",
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json"
             }
+        }).then(() => {
+            console.log("logged out")
         })
     }
 }
@@ -91,7 +96,7 @@ export const getCurrentUser = () => {
             .then( r => r.json())
             .then(user => {
                 if (user.error) {
-                    alert(user.error)
+                    console.log(user.error)
                 } else {
                     dispatch(setCurrentUser(user))
                 }
