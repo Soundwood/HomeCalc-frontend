@@ -1,31 +1,31 @@
 import React from 'react'
-import ScenarioForm from './ScenarioForm'
 import { connect } from 'react-redux'
 import { getCurrentUser } from "../actions/currentUser"
+import { getTaxRates, getMortgRates } from "../actions/rates"
 import Navbar from './Navbar'
-import Home from './Home'
-import Login from './Login'
+import LoginSignup from './LoginSignup'
 import Logout from './Logout'
-import Signup from './Signup'
-import MyScenarios from './MyScenarios'
-import { fetchScenarios } from '../actions/scenariosActions'
-import { Route } from 'react-router-dom'
+import RouterComp from "./RouterComp";
+import { withRouter } from 'react-router-dom'
 
 class App extends React.Component {
     componentDidMount() {
         this.props.getCurrentUser()
+        this.props.getTaxRates()
+        this.props.getMortgRates()
     }
 
     render() {
-        const { loggedIn, scenarios } = this.props
+        const {loggedIn} = this.props
         return (
-            <div>
-                { loggedIn ? <Navbar /> : <Home/> }
+            <div id="wrapper">
+                {loggedIn ? <Navbar /> :null}
                 <div id="main">
-                    <Route exact path='/signup' component={Signup}/>
-                    <Route exact path='/scenario' component={ScenarioForm}/>
-                    {loggedIn ? <Logout /> : <Login />}
-                    <MyScenarios />
+                        {loggedIn ? <RouterComp /> : null}
+                    <article className="post">
+                        {!loggedIn ? <LoginSignup/> :null}
+                        {loggedIn ? <Logout /> :null}
+                    </article>
                 </div>
             </div>
         )}
@@ -34,8 +34,8 @@ class App extends React.Component {
 const mapStateToProps = state => {
     return ({
         loggedIn: !!state.currentUser,
-        scenarios: state.scenarios
+        
     })
 }
 
-export default connect(mapStateToProps, { getCurrentUser, fetchScenarios })(App)
+export default withRouter(connect(mapStateToProps, { getCurrentUser, getTaxRates, getMortgRates })(App))
