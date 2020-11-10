@@ -2599,7 +2599,7 @@ input, select, textarea {
 				-webkit-flex-grow: 1;
 				-ms-flex-grow: 1;
 				flex-grow: 1;
-				-ms-flex: 1;
+				/* -ms-flex: 1; */
 			}
 
 				ul.posts article header h3 {
@@ -2757,7 +2757,7 @@ input, select, textarea {
 				-webkit-flex-grow: 1;
 				-ms-flex-grow: 1;
 				flex-grow: 1;
-				-ms-flex: 1;
+				/* -ms-flex: 1; */
 				padding: 3.75em 3em 3.3em 3em;
 			}
 
@@ -2887,7 +2887,7 @@ input, select, textarea {
 				}
 
 					.post > header .title {
-						-ms-flex: 0 1 auto;
+						/* -ms-flex: 0 1 auto; */
 						margin: 0 0 2em 0;
 						padding: 0;
 						text-align: center;
@@ -3373,7 +3373,7 @@ input, select, textarea {
 		-webkit-flex-grow: 1;
 		-ms-flex-grow: 1;
 		flex-grow: 1;
-		-ms-flex: 1;
+		/* -ms-flex: 1; */
 		width: 100%;
 	}
 
