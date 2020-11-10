@@ -1,13 +1,27 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import ScenarioCard from './ScenarioCard'
+import { getMyScenarios } from '../actions/scenarios'
 
-const MyScenarios = props => {
-    const scenarioCards = props.scenarios.length > 0 ? 
-        props.scenarios.map(s => <ScenarioCard scenario={s} />):
-        null
-    return scenarioCards
+class MyScenarios extends React.Component {
+    componentDidMount() {
+        this.props.getMyScenarios()
     }
+    render() {
+        const scenarioCards = this.props.scenarios ? 
+            this.props.scenarios.map(function(s) {
+                return (
+                    <article className="post" key={s.id}>
+                        <ScenarioCard scenario={s} />
+                    </article>
+                )
+            }):
+            null
+        return (
+            scenarioCards
+        )
+    }
+}
 
 const mapStateToProps = state => {
     return {
@@ -15,4 +29,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(MyScenarios)
+export default connect(mapStateToProps, { getMyScenarios })(MyScenarios)
