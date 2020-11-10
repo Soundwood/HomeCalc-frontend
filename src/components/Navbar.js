@@ -1,16 +1,17 @@
 import React, { Component } from 'react'
+import { NavLink } from 'react-router-dom'
 
 class Navbar extends Component {
     render() {
         return (
             <header id="header">
-                <h1><a href="index.html">SmartHomeCost</a></h1>
+                <h1><NavLink to="/home">SmartHomeCost</NavLink></h1>
                 <nav className="links">
                     <ul>
-                        <li><a href="#">Login/Logout</a></li>
-                        <li><a href="#">My Scenarios</a></li>
-                        <li><a href="#">New Scenario</a></li>
-                        <li><a href="#">My Homes</a></li>
+                        <li><NavLink to="/home">Home</NavLink></li>
+                        <li><NavLink to="/scenarios">My Scenarios</NavLink></li>
+                        <li><NavLink to="/new_scenario">New Scenario</NavLink></li>
+                        <li><NavLink to="/my_homes">My Homes</NavLink></li>
                     </ul>
                 </nav>
                 <nav className="main">
