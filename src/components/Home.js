@@ -18,7 +18,7 @@ class Home extends React.Component {
             <p>There is no end of information related to answering the question of "How much home can I afford?" What we're offering is a single
                  location to answer that question by giving clear answers ranging from most to least frugal.</p>
             <p>While we recognize that these scenarios are general rules and might not work for everyone,
-                 we hope to give the user a better idea of where to start</p>
+                 we hope to give the user a better idea of where to start.</p>
             <p>Give us some information about yourself and allow us to use several "rule of thumb" calculations 
                 to provide a reasonable home price given your specific scenario. Save multiple scenarios in multiple locations to compare
                  and contrast your different options. Happy hunting!</p>
