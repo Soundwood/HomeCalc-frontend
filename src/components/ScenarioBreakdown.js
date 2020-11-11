@@ -1,5 +1,9 @@
 import React from 'react'
 import ScenarioAnalysis30 from './ScenarioAnalysis30'
+import ScenarioAnalysisTwoPointFiveX from './ScenarioAnalysisTwoPointFiveX'
+import ScenarioAnalysisFourX from './ScenarioAnalysisFourX'
+import ScenarioAnalysisFiveX from './ScenarioAnalysisFiveX'
+import ScenarioAnalysisRamsey from './ScenarioAnalysisRamsey'
 
 const ScenarioBreakdown = ({ scenario }) => {
     const formatMoney = (amount, decimalCount = 2, decimal = ".", thousands = ",") => {
@@ -25,6 +29,11 @@ const ScenarioBreakdown = ({ scenario }) => {
                 <h5>City: {scenario.city}</h5>
                 <h5>State: {scenario.state}</h5>
                 <br/>
+                <article className="post"><h2>Rules are arranged from most to least frugal</h2></article>
+                <article className="post"><ScenarioAnalysisRamsey formatMoney={formatMoney} scenario={scenario} /></article>
+                <article className="post"><ScenarioAnalysisTwoPointFiveX formatMoney={formatMoney} scenario={scenario} /></article>
+                <article className="post"><ScenarioAnalysisFourX formatMoney={formatMoney} scenario={scenario} /></article>
+                <article className="post"><ScenarioAnalysisFiveX formatMoney={formatMoney} scenario={scenario} /></article>
                 <article className="post"><ScenarioAnalysis30 formatMoney={formatMoney} scenario={scenario} /></article>
             </div>
         </article>
