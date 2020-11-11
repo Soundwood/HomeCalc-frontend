@@ -111,7 +111,7 @@ input, select, textarea {
 			-webkit-transition: none !important;
 			-ms-transition: none !important;
 			transition: none !important;
-		}
+        }
 
 /* Type */
 
@@ -2238,7 +2238,10 @@ input, select, textarea {
 	:-ms-input-placeholder {
 		color: #aaaaaa !important;
 		opacity: 1.0;
-	}
+    }
+    input.error {
+        border: 1px solid red
+    }
 
 /* Icon */
 

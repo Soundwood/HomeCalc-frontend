@@ -3,9 +3,35 @@ import { connect } from 'react-redux'
 import { updateScenarioForm } from '../actions/scenarioForm'
 import { createScenario } from '../actions/scenarios'
 
+function validate(net_income, income_after_tax, monthly_debt, downpayment, city, state) {
+    return {
+        net_income: (isNaN(net_income) || net_income.length === 0 || net_income < 10000),
+        income_after_tax: (isNaN(income_after_tax) || income_after_tax.length === 0 || income_after_tax < 10000),
+        monthly_debt: isNaN(monthly_debt),
+        downpayment: isNaN(downpayment),
+        city: city.length === 0,
+        state: state.length !== 2
+    }
+}
+let errors = {
+    net_income: false,
+    income_after_tax: false,
+    monthly_debt: false,
+    downpayment: false,
+    city: false,
+    state: false
+}
+const states_list = ["AK", "AL", "AR", "AS", "AZ", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "GU", "HI",
+"IA", "ID", "IL", "IN", "KS", "KY", "LA", "MA", "MD", "ME", "MI", "MN", "MO", "MP", "MS", "MT", "NC",
+"ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA", "PR", "RI", "SC", "SD", "TN", "TX", "UM",
+"UT", "VA", "VI", "VT", "WA", "WI", "WV", "WY"]
+
+
 const ScenarioForm = ({ formData, updateScenarioForm, user_id, scenario, createScenario, editMode, tax_by_state, mortg_rates, history}) => {
     const { net_income, income_after_tax, monthly_debt, credit_score, downpayment, city, state } = formData
-    
+    errors = validate(net_income, income_after_tax, monthly_debt, downpayment, city, state)
+    const isEnabled = !Object.keys(errors).some(x => errors[x])
+
     const handleChange = (e) => {
         const { name, value } = e.target
         // Make sure this makes sense ie its a number
@@ -22,11 +48,11 @@ const ScenarioForm = ({ formData, updateScenarioForm, user_id, scenario, createS
         <article className="post">
             <form onSubmit={handleSubmit}>
                 <label>Net Income (per year):</label>
-                <input type='text' value={net_income} onChange={handleChange} name='net_income'/><br/>
+                <input type='text' value={net_income} onChange={handleChange} name='net_income' className={errors.net_income ? "error" : ""}/><br/>
                 <label>Income After Tax (per year):</label>
-                <input type='text' value={income_after_tax} onChange={handleChange} name='income_after_tax'/><br/>
+                <input type='text' value={income_after_tax} onChange={handleChange} name='income_after_tax' className={errors.income_after_tax ? "error" : ""}/><br/>
                 <label>Monthly Recurring Debt:</label>
-                <input type='text' value={monthly_debt} onChange={handleChange} name='monthly_debt'/><br/>
+                <input type='text' value={monthly_debt} onChange={handleChange} name='monthly_debt' className={errors.monthly_debt ? "error" : ""}/><br/>
                 <label>Credit Score:</label>
                 <select value={credit_score} onChange={handleChange} name='credit_score'>
                     <option value="great">Great - 720-850</option>
@@ -35,12 +61,15 @@ const ScenarioForm = ({ formData, updateScenarioForm, user_id, scenario, createS
                     <option value="poor">Poor - 300-629</option>
                 </select><br/>
                 <label>Home Downpayment:</label>
-                <input type='text' value={downpayment} onChange={handleChange} name='downpayment'/><br/>
+                <input type='text' value={downpayment} onChange={handleChange} name='downpayment' className={errors.downpayment ? "error" : ""}/><br/>
                 <label>City:</label>
-                <input type='text' value={city} onChange={handleChange} name='city'/><br/>
+                <input type='text' value={city} onChange={handleChange} name='city' className={errors.city ? "error" : ""}/><br/>
                 <label>State:</label>
-                <input type='text' value={state} onChange={handleChange} name='state'/><br/>
-                <input type='submit' value='Evaluate Scenario' />
+                <select value={state} onChange={handleChange} name='state' className={errors.state ? "error" : ""}>
+                    <option>Please Select</option>
+                    {states_list.map((state, index) => <option key={index}>{state}</option>)}
+                </select><br/>
+                <input type='submit' value='Evaluate Scenario' disabled={!isEnabled}/>
             </form>
         </article>
     )
