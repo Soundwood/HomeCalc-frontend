@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import ScenarioAnalysis30 from './ScenarioAnalysis30'
 import ScenarioAnalysisTwoPointFiveX from './ScenarioAnalysisTwoPointFiveX'
 import ScenarioAnalysisFourX from './ScenarioAnalysisFourX'
@@ -21,13 +22,15 @@ const ScenarioBreakdown = ({ scenario }) => {
     return (
         <article className="post">
             <div className="title">
-                <h5>Net Income: {scenario.net_income}</h5>
-                <h5>Income After Tax: {scenario.income_after_tax}</h5>
-                <h5>Monthly Debt: {scenario.monthly_debt}</h5>
-                <h5>Credit Score: {scenario.credit_score}</h5>
-                <h5>Downpayment: {scenario.downpayment}</h5>
-                <h5>City: {scenario.city}</h5>
-                <h5>State: {scenario.state}</h5>
+                <Link to={`/scenarios/`}>
+                    <h5>Net Income: {scenario.net_income}</h5>
+                    <h5>Income After Tax: {scenario.income_after_tax}</h5>
+                    <h5>Monthly Debt: {scenario.monthly_debt}</h5>
+                    <h5>Credit Score: {scenario.credit_score}</h5>
+                    <h5>Downpayment: {scenario.downpayment}</h5>
+                    <h5>City: {scenario.city}</h5>
+                    <h5>State: {scenario.state}</h5>
+                </Link>
                 <br/>
                 <article className="post"><h2>Rules are arranged from most to least frugal</h2></article>
                 <article className="post"><ScenarioAnalysisRamsey formatMoney={formatMoney} scenario={scenario} /></article>

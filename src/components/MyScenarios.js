@@ -25,7 +25,7 @@ class MyScenarios extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        scenarios: state.currentUser.scenarios
+        scenarios: state.scenarios
     }
 }
 
