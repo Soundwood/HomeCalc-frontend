@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { deleteScenario } from '../actions/scenarios'
+import LinkButton from './LinkButton'
 
 const ScenarioCard = ({ scenario, deleteScenario, history}) => {
     return (
@@ -15,10 +16,10 @@ const ScenarioCard = ({ scenario, deleteScenario, history}) => {
                 <h5>City: {scenario.city}</h5>
                 <h5>State: {scenario.state}</h5>
                 <h4>Click here to see an analysis of THIS scenario</h4>
-
                 <br/>
             </Link>
-            <button onClick={() => deleteScenario(scenario, history)}>Delete</button>
+            <LinkButton to={`/scenarios/${scenario.id}/edit`}>Edit Scenario</LinkButton>
+            <button onClick={() => deleteScenario(scenario)}>Delete</button>
         </>
     )
 }

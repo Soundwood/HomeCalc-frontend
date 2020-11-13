@@ -78,33 +78,28 @@ export const createScenario = (scenarioData, history) => {
     }
 }
 
-export const updateScenario = (scenarioData, history) => {
-  return dispatch => {
-    const sendableScenarioData = {
-    //   start_date: tripData.startDate,
-    //   end_date: tripData.endDate,
-    //   name: tripData.name
-    }
-    return fetch(`http://localhost:3000/api/v1/scenarios/${scenarioData.scenario.Id}`, {
-      credentials: "include",
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(sendableScenarioData)
-    })
-      .then(r => r.json())
-      .then(resp => {
-        if (resp.error) {
-          alert(resp.error)
-        } else {
-          dispatch(updateScenarioSuccess(resp.data))
-          history.push(`/scenarios/${resp.data.id}`)
-        }
-      })
-      .catch(console.log)
+export const updateScenario = (scenarioData, scenarioId, history) => {
+    return dispatch => {
+        return fetch(`http://localhost:3000/api/v1/scenarios/${scenarioId}`, {
+        credentials: "include",
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(scenarioData)
+        })
+        .then(r => r.json())
+        .then(resp => {
+            if (resp.error) {
+            alert(resp.error)
+            } else {
+            dispatch(updateScenarioSuccess(resp))
+            history.push(`/scenarios/${resp.id}`)
+            }
+        })
+        .catch(console.log)
 
-  }
+    }
 }
 
 export const deleteScenario = (scenario, history) => {

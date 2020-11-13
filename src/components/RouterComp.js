@@ -3,10 +3,11 @@ import { Switch, Route } from "react-router-dom";
 import Home from "../components/Home";
 import MyScenarios from "./MyScenarios";
 import MyHomes from "./MyHomes";
-import ScenarioForm from './ScenarioForm'
 import ScenarioBreakdown from "./ScenarioBreakdown";
 import { connect } from 'react-redux'
 import NotFound from './NotFound'
+import ScenarioFormNewWrapper from './ScenarioFormNewWrapper'
+import ScenarioFormEditWrapper from './ScenarioFormEditWrapper'
 
 const RouterComp = ({scenarios}) => {
   return (
@@ -17,9 +18,13 @@ const RouterComp = ({scenarios}) => {
             const scenario = scenarios.find(scenario => scenario.id === parseInt(props.match.params.id))
             return <ScenarioBreakdown scenario={scenario} {...props} />
         }}/>
+        <Route exact path="/scenarios/:id/edit" render={props => {
+            const scenario = scenarios.find(scenario => scenario.id === parseInt(props.match.params.id))
+            return <ScenarioFormEditWrapper scenario={scenario} {...props} />
+        }}/>
         <Route exact path="/scenarios" component={MyScenarios} />
         <Route exact path="/my_homes" component={MyHomes} />
-        <Route exact path='/new_scenario' component={ScenarioForm}/>
+        <Route exact path='/new_scenario' component={ScenarioFormNewWrapper}/>
         <Route component={NotFound} />
     </Switch>
   );

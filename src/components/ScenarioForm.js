@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { updateScenarioForm } from '../actions/scenarioForm'
-import { createScenario } from '../actions/scenarios'
 
 function validate(net_income, income_after_tax, monthly_debt, downpayment, city, state) {
     return {
@@ -27,26 +26,25 @@ const states_list = ["AK", "AL", "AR", "AS", "AZ", "CA", "CO", "CT", "DC", "DE",
 "UT", "VA", "VI", "VT", "WA", "WI", "WV", "WY"]
 
 
-const ScenarioForm = ({ formData, updateScenarioForm, user_id, scenario, createScenario, editMode, tax_by_state, mortg_rates, history}) => {
+const ScenarioForm = ({ formData, handleSubmit, updateScenarioForm, user_id, tax_by_state, mortg_rates }) => {
     const { net_income, income_after_tax, monthly_debt, credit_score, downpayment, city, state } = formData
     errors = validate(net_income, income_after_tax, monthly_debt, downpayment, city, state)
     const isEnabled = !Object.keys(errors).some(x => errors[x])
+    const prop_tax_rate_id = (state ? tax_by_state.filter(function(st) {return st.state === state})[0].id : null)
+    const mortg_interest_rate_id = mortg_rates.filter(function(rate) {return rate.credit_score === credit_score})[0].id
 
     const handleChange = (e) => {
         const { name, value } = e.target
         // Make sure this makes sense ie its a number
         updateScenarioForm(name, value)
     }
-    const handleSubmit = e => {
-        e.preventDefault()
-        const prop_tax_rate_id = tax_by_state.filter(function(st) {return st.state === state})[0].id
-        const mortg_interest_rate_id = mortg_rates.filter(function(rate) {return rate.credit_score === credit_score})[0].id
-        createScenario({...formData, user_id, prop_tax_rate_id, mortg_interest_rate_id}, history)
-    }
 
     return (
         <article className="post">
-            <form onSubmit={handleSubmit}>
+            <form onSubmit = {e => {
+                e.preventDefault()
+                handleSubmit(formData, user_id, prop_tax_rate_id, mortg_interest_rate_id)
+                }}>
                 <label>Net Income (per year):</label>
                 <input type='text' value={net_income} onChange={handleChange} name='net_income' className={errors.net_income ? "error" : ""}/><br/>
                 <label>Income After Tax (per year):</label>
@@ -80,8 +78,8 @@ const mapStateToProps = state => {
         formData: state.scenario,
         user_id: userId,
         tax_by_state: state.prop_tax_rates,
-        mortg_rates: state.mortg_int_rates
+        mortg_rates: state.mortg_int_rates,
     }
 }
 
-export default connect(mapStateToProps, { updateScenarioForm, createScenario } )(ScenarioForm)
+export default connect(mapStateToProps, { updateScenarioForm } )(ScenarioForm)
