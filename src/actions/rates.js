@@ -1,3 +1,5 @@
+import * as Constants from '../constants'
+
 // synchronous actions
 export const setTaxRates = tax_rates => {
     return {
@@ -15,7 +17,7 @@ export const setIntRates = int_rates => {
 // async actions
 export const getTaxRates = () => {
     return dispatch => {
-        return fetch("http://localhost:3000/api/v1/prop_tax_rates", {
+        return fetch(`${Constants.BACKEND_BASE_URL}/api/v1/prop_tax_rates`, {
             credentials: "include",
             method: "GET",
             headers: {
@@ -35,7 +37,7 @@ export const getTaxRates = () => {
 }
 export const getMortgRates = () => {
     return dispatch => {
-        return fetch("http://localhost:3000/api/v1/mortg_interest_rates", {
+        return fetch(`${Constants.BACKEND_BASE_URL}/api/v1/mortg_interest_rates`, {
             credentials: "include",
             method: "GET",
             headers: {

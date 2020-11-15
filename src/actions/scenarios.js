@@ -1,4 +1,5 @@
 import { resetScenarioForm } from './scenarioForm'
+import * as Constants from '../constants'
 
 // synchronous actions
 export const setMyScenarios = scenarios => {
@@ -35,7 +36,7 @@ export const updateScenarioSuccess = scenario => {
 
 export const getMyScenarios = () => {
     return dispatch => {
-        return fetch("http://localhost:3000/api/v1/scenarios", {
+        return fetch(`${Constants.BACKEND_BASE_URL}/api/v1/scenarios`, {
         credentials: "include",
         method: "GET",
         headers: {
@@ -56,7 +57,7 @@ export const getMyScenarios = () => {
 
 export const createScenario = (scenarioData, history) => {
     return dispatch => {
-        return fetch("http://localhost:3000/api/v1/scenarios", {
+        return fetch(`${Constants.BACKEND_BASE_URL}/api/v1/scenarios`, {
         credentials: "include",
         method: "POST",
         headers: {
@@ -80,7 +81,7 @@ export const createScenario = (scenarioData, history) => {
 
 export const updateScenario = (scenarioData, scenarioId, history) => {
     return dispatch => {
-        return fetch(`http://localhost:3000/api/v1/scenarios/${scenarioId}`, {
+        return fetch(`${Constants.BACKEND_BASE_URL}/api/v1/scenarios/${scenarioId}`, {
         credentials: "include",
         method: "PATCH",
         headers: {
@@ -104,7 +105,7 @@ export const updateScenario = (scenarioData, scenarioId, history) => {
 
 export const deleteScenario = (scenario, history) => {
     return dispatch => {
-        return fetch(`http://localhost:3000/api/v1/scenarios/${scenario.id}`, {
+        return fetch(`${Constants.BACKEND_BASE_URL}/api/v1/scenarios/${scenario.id}`, {
         credentials: "include",
         method: "DELETE",
         headers: {
