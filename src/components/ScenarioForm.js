@@ -26,7 +26,7 @@ const states_list = ["AK", "AL", "AR", "AS", "AZ", "CA", "CO", "CT", "DC", "DE",
 "UT", "VA", "VI", "VT", "WA", "WI", "WV", "WY"]
 
 
-const ScenarioForm = ({ formData, handleSubmit, updateScenarioForm, user_id, tax_by_state, mortg_rates }) => {
+const ScenarioForm = ({ formData, handleSubmit, updateScenarioForm, user_id, tax_by_state, mortg_rates, editMode}) => {
     const { net_income, income_after_tax, monthly_debt, credit_score, downpayment, city, state } = formData
     errors = validate(net_income, income_after_tax, monthly_debt, downpayment, city, state)
     const isEnabled = !Object.keys(errors).some(x => errors[x])
@@ -67,7 +67,7 @@ const ScenarioForm = ({ formData, handleSubmit, updateScenarioForm, user_id, tax
                     <option>Please Select</option>
                     {states_list.map((state, index) => <option key={index}>{state}</option>)}
                 </select><br/>
-                <input type='submit' value='Evaluate Scenario' disabled={!isEnabled}/>
+                <input type='submit' value={ editMode ? 'Edit Scenario' : 'Evaluate Scenario' } disabled={!isEnabled}/>
             </form>
         </article>
     )

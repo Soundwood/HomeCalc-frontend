@@ -16,7 +16,7 @@ class ScenarioFormEditWrapper extends React.Component {
     render () {
         return (
             <div>
-                <ScenarioForm handleSubmit={this.handleSubmit}/>
+                <ScenarioForm editMode handleSubmit={this.handleSubmit}/>
             </div>
         );
     }
