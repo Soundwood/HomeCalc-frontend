@@ -26,6 +26,12 @@ SMARTHOMECALC (HOMECALC frontend) is intended to be used with the HOMECALC API b
 
 ## Create Scenario
 
+![Create GIF](public/img/CREATE_SCENARIO.gif)
+
 ## Modify / Delete Scenario
 
+![Modify GIF](public/img/EDIT_SCENARIO.gif)
+
 ## View Analysis
+
+![Analysis GIF](public/img/SCENARIO_ANALYSIS.gif)
