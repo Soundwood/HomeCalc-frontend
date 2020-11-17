@@ -26,7 +26,7 @@ const ScenarioAnalysisFiveX = (props) => {
                 Monthly Mortgage Interest: {"$"+props.formatMoney(mortg_int)} (This will go DOWN over the life of the loan)<br/>
                 Monthly Mortgage Principal: {"$"+props.formatMoney(mortg_princ)} (This will go UP over the life of the loan)<br/>
                 Monthly Total Mortgage: {"$"+props.formatMoney(mortg)}<br/>
-                Assumed Annual Tax Rate for this State: {tax_rate*100+"%"}<br/>
+                Assumed Annual State and Local Property Taxes: {tax_rate*100+"%"}<br/>
                 Monthly Property Tax: {"$"+props.formatMoney(prop_tax)}<br/>
                 <strong>Monthly Total Mortgage and Tax: {"$"+props.formatMoney(mortg+prop_tax)}</strong><br/>
                 <strong>Max Home Purchase Price: {"$"+props.formatMoney(max_home_price)}</strong>
