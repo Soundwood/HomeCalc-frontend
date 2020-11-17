@@ -1,7 +1,7 @@
 import React from 'react';
 import ScenarioForm from './ScenarioForm'
-import { updateScenario } from '../actions/scenarios'
-import { setFormDataForEdit } from '../actions/scenarioForm'
+import { updateScenario } from '../../actions/scenarios'
+import { setFormDataForEdit } from '../../actions/scenarioForm'
 import { connect } from 'react-redux'
 
 class ScenarioFormEditWrapper extends React.Component {

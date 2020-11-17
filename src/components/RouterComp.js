@@ -1,13 +1,13 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import Home from "../components/Home";
-import MyScenarios from "./MyScenarios";
+import MyScenarios from "./scenarios/MyScenarios";
 import MyHomes from "./MyHomes";
-import ScenarioBreakdown from "./ScenarioBreakdown";
+import ScenarioBreakdown from "./scenarios/ScenarioBreakdown";
 import { connect } from 'react-redux'
 import NotFound from './NotFound'
-import ScenarioFormNewWrapper from './ScenarioFormNewWrapper'
-import ScenarioFormEditWrapper from './ScenarioFormEditWrapper'
+import ScenarioFormNewWrapper from './scenarios/ScenarioFormNewWrapper'
+import ScenarioFormEditWrapper from './scenarios/ScenarioFormEditWrapper'
 
 const RouterComp = ({scenarios}) => {
   return (

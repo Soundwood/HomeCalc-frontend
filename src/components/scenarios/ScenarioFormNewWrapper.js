@@ -1,6 +1,6 @@
 import React from 'react';
 import ScenarioForm from './ScenarioForm'
-import { createScenario } from '../actions/scenarios'
+import { createScenario } from '../../actions/scenarios'
 import { connect } from 'react-redux'
 
 const ScenarioFormNewWrapper = ({history, createScenario}) => {

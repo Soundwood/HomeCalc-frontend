@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { deleteScenario } from '../actions/scenarios'
-import LinkButton from './LinkButton'
+import { deleteScenario } from '../../actions/scenarios'
+import LinkButton from '../LinkButton'
 
 const ScenarioCard = ({ scenario, deleteScenario, history}) => {
     return (

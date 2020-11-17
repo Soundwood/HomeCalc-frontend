@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 import { getCurrentUser } from "../actions/currentUser"
 import { getTaxRates, getMortgRates } from "../actions/rates"
 import Navbar from './Navbar'
-import LoginSignup from './LoginSignup'
-import Logout from './Logout'
+import LoginSignup from './login_logout/LoginSignup'
+import Logout from './login_logout/Logout'
 import RouterComp from "./RouterComp";
 import { withRouter } from 'react-router-dom'
 
@@ -27,6 +27,9 @@ class App extends React.Component {
                         {loggedIn ? <Logout /> :null}
                     </article>
                 </div>
+                <section id="sidebar">
+                    THIS IS THE SIDEBAR
+                </section>
             </div>
         )}
 }

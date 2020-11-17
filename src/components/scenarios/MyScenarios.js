@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import ScenarioCard from './ScenarioCard'
-import { getMyScenarios } from '../actions/scenarios'
+import { getMyScenarios } from '../../actions/scenarios'
 
 class MyScenarios extends React.Component {
     componentDidMount() {

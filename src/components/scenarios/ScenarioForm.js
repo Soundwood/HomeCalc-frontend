@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { updateScenarioForm } from '../actions/scenarioForm'
+import { updateScenarioForm } from '../../actions/scenarioForm'
 
 function validate(net_income, income_after_tax, monthly_debt, downpayment, city, state) {
     return {

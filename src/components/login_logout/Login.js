@@ -1,8 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import { updateLoginForm } from '../actions/loginForm'
-import loginForm from '../reducers/loginForm'
-import { login } from '../actions/currentUser'
+import { updateLoginForm } from '../../actions/loginForm'
+import loginForm from '../../reducers/loginForm'
+import { login } from '../../actions/currentUser'
 
 const Login = ({loginFormData, updateLoginForm, login}) => {
     const handleInputChange = event => {
