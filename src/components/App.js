@@ -7,6 +7,7 @@ import LoginSignup from './login_logout/LoginSignup'
 import Logout from './login_logout/Logout'
 import RouterComp from "./RouterComp";
 import { withRouter } from 'react-router-dom'
+import Sidebar from './Sidebar'
 
 class App extends React.Component {
     componentDidMount() {
@@ -28,7 +29,7 @@ class App extends React.Component {
                     </article>
                 </div>
                 <section id="sidebar">
-                    THIS IS THE SIDEBAR
+                    <Sidebar/>
                 </section>
             </div>
         )}
