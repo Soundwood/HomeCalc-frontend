@@ -20,7 +20,6 @@ export const clearCurrentUser = () => {
 
 export const login = (credentials, history) => {
     return dispatch => {
-        //  add loading current user message here?
         return fetch(`${Constants.BACKEND_BASE_URL}/api/v1/login`, {
             credentials: "include",
             method: "POST",

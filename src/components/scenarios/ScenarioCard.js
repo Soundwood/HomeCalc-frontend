@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { deleteScenario } from '../../actions/scenarios'
 import LinkButton from '../LinkButton'
+import ScenarioStars from './ScenarioStars'
 
-const ScenarioCard = ({ scenario, deleteScenario, history}) => {
+const ScenarioCard = ({ scenario, deleteScenario, handleStarSelect }) => {
     return (
         <>
             <Link to={`/scenarios/${scenario.id}`}>
@@ -18,8 +19,17 @@ const ScenarioCard = ({ scenario, deleteScenario, history}) => {
                 <h4>Click here to see an analysis of THIS scenario</h4>
                 <br/>
             </Link>
-            <LinkButton to={`/scenarios/${scenario.id}/edit`}>Edit Scenario</LinkButton>
-            <button onClick={() => deleteScenario(scenario)}>Delete</button>
+            <header>
+                <div className="title">
+                    <LinkButton to={`/scenarios/${scenario.id}/edit`}>Edit Scenario</LinkButton>
+                    {/* <button onClick={() => handleStarSelect(scenario.id)}>Star!</button> */}
+                    <button onClick={() => deleteScenario(scenario)}>Delete</button>
+                    <ScenarioStars scenario={scenario} handleStarSelect={handleStarSelect}/>
+                </div>
+                <div className="meta">
+                    {scenario.stars}
+                </div>
+            </header>
         </>
     )
 }

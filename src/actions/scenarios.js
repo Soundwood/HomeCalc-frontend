@@ -31,6 +31,12 @@ export const updateScenarioSuccess = scenario => {
         scenario
     }
 }
+export const setScenarioStars = scenario => {
+    return {
+        type: "UPDATE_SCENARIO",
+        scenario
+    }
+}
 
 // async actions
 
@@ -92,10 +98,33 @@ export const updateScenario = (scenarioData, scenarioId, history) => {
         .then(r => r.json())
         .then(resp => {
             if (resp.error) {
-            alert(resp.error)
+                alert(resp.error)
             } else {
-            dispatch(updateScenarioSuccess(resp))
-            history.push(`/scenarios/${resp.id}`)
+                dispatch(updateScenarioSuccess(resp))
+                history.push(`/scenarios/${resp.id}`)
+            }
+        })
+        .catch(console.log)
+
+    }
+}
+
+export const updateScenarioStars = (scenarioData, scenarioId) => {
+    return dispatch => {
+        return fetch(`${Constants.BACKEND_BASE_URL}/api/v1/scenarios/${scenarioId}`, {
+        credentials: "include",
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(scenarioData)
+        })
+        .then(r => r.json())
+        .then(resp => {
+            if (resp.error) {
+                alert(resp.error)
+            } else {
+                dispatch(setScenarioStars(resp))
             }
         })
         .catch(console.log)

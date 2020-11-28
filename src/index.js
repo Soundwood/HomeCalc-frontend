@@ -10,7 +10,7 @@ ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
             <ScrollToTop>
-            <App />
+                <App />
             </ScrollToTop>
         </BrowserRouter>
     </Provider>,

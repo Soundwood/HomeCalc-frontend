@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { getCurrentUser } from "../actions/currentUser"
 import { getTaxRates, getMortgRates } from "../actions/rates"
+import { getMyScenarios } from '../actions/scenarios'
 import Navbar from './Navbar'
 import LoginSignup from './login_logout/LoginSignup'
 import Logout from './login_logout/Logout'
@@ -14,6 +15,7 @@ class App extends React.Component {
         this.props.getCurrentUser()
         this.props.getTaxRates()
         this.props.getMortgRates()
+        this.props.getMyScenarios()
     }
 
     render() {
@@ -28,9 +30,7 @@ class App extends React.Component {
                         {loggedIn ? <Logout /> :null}
                     </article>
                 </div>
-                <section id="sidebar">
-                    <Sidebar/>
-                </section>
+                {loggedIn ? <section id="sidebar"><Sidebar/></section> : null}
             </div>
         )}
 }
@@ -42,4 +42,4 @@ const mapStateToProps = state => {
     })
 }
 
-export default withRouter(connect(mapStateToProps, { getCurrentUser, getTaxRates, getMortgRates })(App))
+export default withRouter(connect(mapStateToProps, { getCurrentUser, getTaxRates, getMortgRates, getMyScenarios})(App))
