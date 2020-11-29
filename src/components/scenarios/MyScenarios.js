@@ -1,17 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import ScenarioCard from './ScenarioCard'
-import { getMyScenarios, updateScenarioStars } from '../../actions/scenarios'
+import { getMyScenarios } from '../../actions/scenarios'
 
 class MyScenarios extends React.Component {
-    handleStarSelect = (scenarioData, scenarioId, stars) => {
-        scenarioData.stars = stars
-        this.props.updateScenarioStars(scenarioData, scenarioId)
+    handleSort = (e) => {
+        this.SortBy(e.target.value)
     }
-    handleSortByRank = () => {
-        const sorted = this.props.scenarios.sort(function(a,b){return a.stars-b.stars})
+    SortBy = (sortType) => {
+        const sorted = this.props.scenarios.sort(function(a,b){return a[sortType]-b[sortType]})
         sorted.reverse()
-        // this.setState({sorted})
+        this.setState({sorted})
     }
     render() {
         const scenarioCards = this.props.scenarios.map((s) => {
@@ -23,8 +22,14 @@ class MyScenarios extends React.Component {
         return (
             <>
                 <article className="post">
-                    <div className="title">
-                        <h2><button onClick={this.handleSortByRank}>Sort by Rank</button></h2>
+                    <div className="title">Sort By: 
+                        <select onChange={(e) => this.handleSort(e)}>
+                            <option> -- </option>
+                            <option value="stars">Star Rank</option>
+                            <option value="net_income">Net Income</option>
+                            <option value="downpayment">Downpayment</option>
+                        </select>
+                        {/* <h2><button onClick={this.handleSortByRank}>Sort by Rank</button></h2> */}
                     </div>
                 </article>
                 {scenarioCards}
@@ -39,4 +44,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, { getMyScenarios, updateScenarioStars })(MyScenarios)
+export default connect(mapStateToProps, { getMyScenarios })(MyScenarios)

@@ -1,11 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { deleteScenario } from '../../actions/scenarios'
+import { deleteScenario, updateScenarioStars } from '../../actions/scenarios'
 import LinkButton from '../LinkButton'
 import ScenarioStars from './ScenarioStars'
 
-const ScenarioCard = ({ scenario, deleteScenario, handleStarSelect }) => {
+const ScenarioCard = ({ scenario, deleteScenario, updateScenarioStars }) => {
+    const handleStarSelect = (scenarioData, scenarioId, stars) => {
+        scenarioData.stars = stars
+        updateScenarioStars(scenarioData, scenarioId)
+    }
     return (
         <>
             <Link to={`/scenarios/${scenario.id}`}>
@@ -34,4 +38,4 @@ const ScenarioCard = ({ scenario, deleteScenario, handleStarSelect }) => {
     )
 }
 
-export default connect(null, {deleteScenario})(ScenarioCard)
+export default connect(null, {deleteScenario, updateScenarioStars })(ScenarioCard)
